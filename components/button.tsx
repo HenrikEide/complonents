@@ -1,14 +1,15 @@
 import React from 'react';
 
 interface ButtonProps {
-  variant: 'primary' | 'secondary' | 'outline';
-  size: 'small' | 'medium' | 'large';
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   onClick?: () => void;
   children: React.ReactNode;
 }
 
-const getButtonClasses = ({variant, size, disabled}: ButtonProps) => {
+const getButtonClasses = ({variant, size, disabled}: 
+    {variant: string, size: string, disabled: boolean}) => {
     const baseClasses = 'rounded-3xl';
   
     const variantClasses = {
@@ -35,12 +36,12 @@ export default function Button({
         variant = 'primary',
         size = 'medium',
         disabled = false,
-        onClick,
+        onClick = () => {},
         children,
     }: ButtonProps) {
   return (
     <button
-      className={getButtonClasses({variant, size, disabled, children})}
+      className={getButtonClasses({variant, size, disabled})}
       onClick={onClick}
       disabled={disabled}
     >
